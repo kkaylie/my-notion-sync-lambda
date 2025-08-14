@@ -1,9 +1,8 @@
 import { Client } from '@notionhq/client'
 import { NotionToMarkdown } from 'notion-to-md'
 
-import { sortPostsByPinned } from './notionHelpers'
-
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
+import { formatPosts } from './notionHelpers'
 
 const notion = new Client({
   auth: process.env.NOTION_API_KEY,
@@ -37,18 +36,12 @@ export const getUpdatedPublishedPosts = async (sinceISOString: string) => {
         },
       ],
     },
-    sorts: [
-      {
-        property: 'PublishedDate',
-        direction: 'descending',
-      },
-    ],
   })
 
   const pageResults = response.results.filter(
     (page): page is PageObjectResponse => page.object === 'page'
   )
-  const postsList = sortPostsByPinned(pageResults)
+  const postsList = formatPosts(pageResults)
 
   // For each updated page, fetch its full content.
   const postsWithContent = await Promise.all(

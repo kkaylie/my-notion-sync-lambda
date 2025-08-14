@@ -55,16 +55,8 @@ export function pageToPost(page: PageObjectResponse): BlogPost {
   }
 }
 
-export function sortPostsByPinned(posts: PageObjectResponse[]): BlogPost[] {
-  return posts.map(pageToPost).sort((a, b) => {
-    if (a.isPinned && !b.isPinned) {
-      return -1
-    }
-    if (!a.isPinned && b.isPinned) {
-      return 1
-    }
-    return 0
-  })
+export function formatPosts(posts: PageObjectResponse[]): BlogPost[] {
+  return posts.map(pageToPost)
 }
 
 function getMediaUrl(mediaObject: NotionMedia): string {
