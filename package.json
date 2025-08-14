@@ -1,0 +1,32 @@
+{
+  "name": "my-notion-sync-lambda",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node run-local.ts",
+    "clean": "rm -rf dist",
+    "copy-assets": "copyfiles \"*.pem\" dist",
+    "build": "npm run clean && tsc && npm run copy-assets",
+    "package": "npm run build && npm run package:zip",
+    "package:zip": "cd dist && zip -r ../deployment-package.zip ."
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.864.0",
+    "@aws-sdk/client-ssm": "^3.864.0",
+    "@aws-sdk/lib-dynamodb": "^3.864.0",
+    "@notionhq/client": "^4.0.1",
+    "dotenv": "^17.2.1",
+    "notion-to-md": "^3.1.9",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.138",
+    "@types/node": "^20.12.12",
+    "@types/pg": "^8.15.5",
+    "copyfiles": "^2.4.1",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
