@@ -10,7 +10,7 @@ const POSTGRESQL_CONFIG = {
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432
+  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432,
 }
 const caPath = path.resolve(__dirname, '..', 'us-east-1-bundle.pem')
 
@@ -35,8 +35,8 @@ function getPool() {
   const pool = new Pool({
     ...POSTGRESQL_CONFIG,
     ssl: {
-      ca: caCertificate
-    }
+      ca: caCertificate,
+    },
   })
   return pool
 }
@@ -85,7 +85,7 @@ async function upsertPostToPostgres(post: PostContent) {
         post.cover,
         post.icon,
         post.markdown,
-        post.id
+        post.id,
       ])
     } else {
       // Post does not exist, execute INSERT
@@ -105,7 +105,7 @@ async function upsertPostToPostgres(post: PostContent) {
         post.tags,
         post.cover,
         post.icon,
-        post.markdown
+        post.markdown,
       ])
     }
   } finally {
@@ -140,7 +140,7 @@ async function upsertPostToPostgres(post: PostContent) {
 export async function savePostsToDatabase(posts: PostContent[]) {
   const allPromises = posts.map((post) =>
     Promise.all([
-      upsertPostToPostgres(post)
+      upsertPostToPostgres(post),
       // upsertPostInteractionData(post.id)
     ])
   )

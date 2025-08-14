@@ -11,7 +11,7 @@ export const handler = async (event: any) => {
       console.log('No new posts to sync.')
       return {
         statusCode: 200,
-        body: JSON.stringify({ message: 'No new posts to sync.' })
+        body: JSON.stringify({ message: 'No new posts to sync.' }),
       }
     }
 
@@ -26,13 +26,13 @@ export const handler = async (event: any) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Sync successful!' })
+      body: JSON.stringify({ message: 'Sync successful!' }),
     }
   } catch (error) {
     console.error('Error during Notion sync:', error)
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'Error during sync.' })
+      body: JSON.stringify({ message: 'Error during sync.' }),
     }
   }
 }

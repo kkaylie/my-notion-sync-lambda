@@ -6,7 +6,7 @@ import { sortPostsByPinned } from './notionHelpers'
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 const notion = new Client({
-  auth: process.env.NOTION_API_KEY
+  auth: process.env.NOTION_API_KEY,
 })
 const n2m = new NotionToMarkdown({ notionClient: notion })
 
@@ -26,23 +26,23 @@ export const getUpdatedPublishedPosts = async (sinceISOString: string) => {
         {
           property: 'Status',
           status: {
-            equals: 'Published'
-          }
+            equals: 'Published',
+          },
         },
         {
           timestamp: 'last_edited_time',
           last_edited_time: {
-            on_or_after: sinceISOString
-          }
-        }
-      ]
+            on_or_after: sinceISOString,
+          },
+        },
+      ],
     },
     sorts: [
       {
         property: 'PublishedDate',
-        direction: 'descending'
-      }
-    ]
+        direction: 'descending',
+      },
+    ],
   })
 
   const pageResults = response.results.filter(
@@ -57,7 +57,7 @@ export const getUpdatedPublishedPosts = async (sinceISOString: string) => {
       const mdString = n2m.toMarkdownString(mdBlocks).parent
       return {
         ...post,
-        markdown: mdString
+        markdown: mdString,
       }
     })
   )

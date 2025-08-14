@@ -33,7 +33,7 @@ export function getPropertyValue(prop: PagePropertyValue) {
 function getFlagValues(prop: PageObjectResponse['properties']) {
   const flag = getPropertyValue(prop.Flag)
   return {
-    isPinned: flag === 'Pinned'
+    isPinned: flag === 'Pinned',
   }
 }
 
@@ -51,7 +51,7 @@ export function pageToPost(page: PageObjectResponse): BlogPost {
     updatedDate: (getPropertyValue(props.UpdatedDate) as string) ?? '',
     summary: (getPropertyValue(props.Summary) as string) ?? '',
     tags: (getPropertyValue(props.Tags) as string[]) ?? [],
-    ...getFlagValues(props)
+    ...getFlagValues(props),
   }
 }
 

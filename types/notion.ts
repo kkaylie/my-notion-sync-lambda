@@ -19,4 +19,6 @@ export interface PostContent extends BlogPost {
   markdown: string
 }
 
-export type NotionMedia = PageObjectResponse['cover'] | PageObjectResponse['icon'];
+export type NotionMedia =
+  | PageObjectResponse['cover']
+  | PageObjectResponse['icon']

@@ -1,7 +1,7 @@
 import {
   SSMClient,
   GetParameterCommand,
-  PutParameterCommand
+  PutParameterCommand,
 } from '@aws-sdk/client-ssm'
 
 const PARAMETER_NAME = '/my-blog/notion-sync/lastSuccessfulSyncTimestamp'
@@ -11,7 +11,7 @@ export async function getSyncTimestamp(): Promise<string> {
   console.log('Starting Notion sync process using SSM Parameter Store...')
   try {
     const getParameterCommand = new GetParameterCommand({
-      Name: PARAMETER_NAME
+      Name: PARAMETER_NAME,
     })
 
     const parameterOutput = await ssmClient.send(getParameterCommand)
@@ -37,7 +37,7 @@ export async function saveSyncTimestamp(timestamp: string): Promise<void> {
     Name: PARAMETER_NAME,
     Value: timestamp,
     Type: 'String',
-    Overwrite: true // Overwrite the existing parameter
+    Overwrite: true, // Overwrite the existing parameter
   })
 
   await ssmClient.send(putParameterCommand)
