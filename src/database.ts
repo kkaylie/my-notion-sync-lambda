@@ -3,7 +3,7 @@ import path from 'path'
 import fs from 'fs'
 // import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 // import { DynamoDBDocumentClient, UpdateCommand } from '@aws-sdk/lib-dynamodb'
-import type { PostContent } from '../types/notion'
+import type { PostContent } from './types/notion'
 
 const POSTGRESQL_CONFIG = {
   user: process.env.DB_USER,

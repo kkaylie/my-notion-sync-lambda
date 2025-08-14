@@ -1,4 +1,4 @@
-import type { PagePropertyValue, BlogPost, NotionMedia } from '../types/notion'
+import type { PagePropertyValue, BlogPost, NotionMedia } from './types/notion'
 
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
