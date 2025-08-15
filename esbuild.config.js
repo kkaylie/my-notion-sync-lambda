@@ -1,8 +1,10 @@
+require('dotenv').config()
+
 const { build } = require('esbuild')
 const path = require('path')
 const fs = require('fs')
 
-const certFile = 'us-east-1-bundle.pem'
+const certFile = `${process.env.AWS_REGION}-bundle.pem`
 const certPath = path.resolve(__dirname, certFile)
 const outDir = 'dist'
 const outCertPath = path.resolve(__dirname, outDir, certFile)

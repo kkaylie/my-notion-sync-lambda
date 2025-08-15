@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "dist/index.js",
   "scripts": {
-    "start": "ts-node run-local.ts",
+    "clean": "rm -rf dist deployment-package.zip .esbuild.lock",
+    "start": "npm run build && node dist/run-local.js",
     "build": "node esbuild.config.js",
     "package": "npm run build && cd dist && zip -r ../deployment-package.zip ."
   },
