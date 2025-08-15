@@ -10,7 +10,11 @@ const POSTGRESQL_CONFIG = {
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432,
 }
 
-const caPath = path.resolve(__dirname, '..', 'us-east-1-bundle.pem')
+const caPath = path.resolve(
+  __dirname,
+  '..',
+  `${process.env.AWS_REGION}-bundle.pem`
+)
 
 export function getPool() {
   if (
